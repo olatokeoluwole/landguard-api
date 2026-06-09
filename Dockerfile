@@ -1,23 +1,26 @@
-FROM python:3.11-slim
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
 
-# Install system dependencies for spatial libraries
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies needed for geospatial python libraries
 RUN apt-get update && apt-get install -y \
     build-essential \
     libgdal-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Set environment variables for GDAL
-ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
-ENV C_INCLUDE_PATH=/usr/include/gdal
-
-WORKDIR /app
+# Copy requirements file first to leverage Docker cache
 COPY requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy the rest of the application code
 COPY . .
 
-# Expose the API port
-EXPOSE 8000
+# Set default port for Cloud Run
+ENV PORT=8080
 
-# Start the uvicorn server
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+# Command to run the application (matching what you used on Render)
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port $PORT"]

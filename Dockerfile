@@ -23,4 +23,4 @@ COPY . .
 ENV PORT=8080
 
 # Command to run the application (matching what you used on Render)
-CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port $PORT"]
+CMD uvicorn app:app --host 0.0.0.0 --port ${PORT:-8080}

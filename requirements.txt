@@ -6,3 +6,4 @@ shapely
 pystac-client
 scikit-image
 numpy
+odc-stac

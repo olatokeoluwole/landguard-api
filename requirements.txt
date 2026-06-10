@@ -7,3 +7,4 @@ pystac-client
 scikit-image
 numpy
 odc-stac
+folium

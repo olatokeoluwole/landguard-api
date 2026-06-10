@@ -8,3 +8,4 @@ scikit-image
 numpy
 odc-stac
 folium
+reportlab

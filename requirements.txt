@@ -9,3 +9,13 @@ numpy
 odc-stac
 folium
 reportlab
+xarray
+rioxarray
+pandas
+dask
+python-multipart
+python-dotenv
+httpx
+fiona
+pyproj
+branca

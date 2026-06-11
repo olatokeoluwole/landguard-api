@@ -19,3 +19,4 @@ httpx
 fiona
 pyproj
 branca
+matplotlib
